@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage x:Class="TPCWare.AuthDemo.Views.LoginPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             Title="{Binding Title}" >
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <StackLayout IsVisible="{Binding IsLogging}">
+            <Label Text="User is logging, wait for completition..." />
+        </StackLayout>
+
+        <StackLayout IsVisible="{Binding IsNotLogging}">
+
+            <StackLayout IsVisible="{Binding IsUserLogged}">
+                <Label Text="{Binding LoggedUserMsg}" />
+                <Button Text="Logout" Command="{Binding LogoutCommand}" />
+            </StackLayout>
+
+            <StackLayout IsVisible="{Binding IsUserNotLogged}">
+                <Label Text="User not logged" />
+                <Button Text="Login" Command="{Binding LoginCommand}" />
+            </StackLayout>
+
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>
