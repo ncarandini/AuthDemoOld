@@ -20,6 +20,19 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.tpcware.authdemo</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>msal90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6</string>
+			</array>
+		</dict>
+	</array>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleDisplayName</key>
