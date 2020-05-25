@@ -2,7 +2,7 @@
 Xamarin Forms demo app to authenticate on Azure AD B2C service using MSAL
 
 ## Description
-This is a leb project to experiment with AAD B2C Authentication in Xamarin Forms with MSAL, to:
+This is a lab project to experiment with AAD B2C Authentication in Xamarin Forms with MSAL, to:
 
 - Use the same User secrets mechanism of .NET Core apps to prevent pushing sensible data to GitHub 
 - Store the access token with Xamarin Essentials SecureStorage
