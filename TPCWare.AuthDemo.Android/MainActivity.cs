@@ -6,6 +6,11 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.CurrentActivity;
+using Xamarin.Forms;
+using TPCWare.AuthDemo.Services;
+using Microsoft.Identity.Client;
+using Android.Content;
 
 namespace TPCWare.AuthDemo.Droid
 {
@@ -14,6 +19,9 @@ namespace TPCWare.AuthDemo.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            DependencyService.Register<IParentWindowLocatorService, AndroidParentWindowLocatorService>();
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -29,6 +37,12 @@ namespace TPCWare.AuthDemo.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
         }
     }
 }

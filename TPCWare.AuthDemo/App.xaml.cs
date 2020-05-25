@@ -15,7 +15,10 @@ namespace TPCWare.AuthDemo
         public static string AzureBackendUrl =
             DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5000" : "http://localhost:5000";
 
-        public static bool UseMockAuthentication = true;
+        // TODO: get rid of this!
+        public static string ApiEndpoint = "https://fabrikamb2chello.azurewebsites.net/hello";
+
+        public static bool UseMockAuthentication = false;
         public static bool UseMockDataStore = true;
 
         public App()
@@ -25,11 +28,11 @@ namespace TPCWare.AuthDemo
             // Register the Auth service
             if (UseMockAuthentication)
             {
-                DependencyService.Register<MockAuthService>();
+                DependencyService.Register<MockAuthenticationService>();
             }
             else
             {
-                DependencyService.Register<MsAuthService>();
+                DependencyService.Register<B2CAuthenticationService>();
             }
 
             // Register the DataStore service
@@ -41,7 +44,20 @@ namespace TPCWare.AuthDemo
             {
                DependencyService.Register<AzureDataStore>();
             }
- 
+
+            /* NOTE on Dependency Injection in Xamarin:
+             * 
+             * 'B2CAuthenticationService' implements the 'IAuthenticationService' interface. 
+             * Using the DependencyService we can register the 'B2CAuthenticationService' such 
+             * that when we ask for an instance of the 'IAuthenticationService' like this:
+             * 
+             *      var authenticationService = DependencyService.Get<IAuthenticationService>();
+             * 
+             * it allows us to grab the instance of the B2CAuthenticationService that we register in the line below:
+             * 
+             * */
+            DependencyService.Register<B2CAuthenticationService>();
+
             MainPage = new AppShell();
         }
 

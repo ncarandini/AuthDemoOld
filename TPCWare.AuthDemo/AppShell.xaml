@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:local="clr-namespace:TPCWare.AuthDemo.Views" Title="TPCWare.AuthDemo" x:Class="TPCWare.AuthDemo.AppShell">
-    <!-- 
-        Styles and Resources 
-    -->
+<Shell x:Class="TPCWare.AuthDemo.AppShell"
+       xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:TPCWare.AuthDemo.Views"
+       xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+       Title="{Binding Title}">
+
+    <Shell.BindingContext>
+        <vm:AppShellViewModel/>
+    </Shell.BindingContext>
+
     <Shell.Resources>
         <ResourceDictionary>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
@@ -20,45 +29,17 @@
             <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
         </ResourceDictionary>
     </Shell.Resources>
-    <!-- Your Pages -->
-    <TabBar>
-        <Tab Title="Login" Icon="tab_login.png">
-            <ShellContent ContentTemplate="{DataTemplate local:LoginPage}" />
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+        <Tab Title="Item list" Icon="tab_feed.png">
+            <ShellContent ContentTemplate="{DataTemplate views:ItemsPage}" />
         </Tab>
-        <Tab Title="Browse" Icon="tab_feed.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <Tab Title="{Binding LogInOutTitle}" Icon="{Binding LogInOutIconName}">
+            <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
         </Tab>
         <Tab Title="About" Icon="tab_about.png">
-            <ShellContent ContentTemplate="{DataTemplate local:AboutPage}" />
+            <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" />
         </Tab>
-    </TabBar>
-    <!-- Optional Templates 
-    // These may be provided inline as below or as separate classes.
-
-    // This header appears at the top of the Flyout.
-    <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Grid>ContentHere</Grid>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
-
-    // ItemTemplate is for ShellItems as displayed in a Flyout
-    <Shell.ItemTemplate>
-        <DataTemplate>
-            <ContentView>
-                Bindable Properties: Title, Icon
-            </ContentView>
-        </DataTemplate>
-    </Shell.ItemTemplate>
-
-    // MenuItemTemplate is for MenuItems as displayed in a Flyout
-    <Shell.MenuItemTemplate>
-        <DataTemplate>
-            <ContentView>
-                Bindable Properties: Text, Icon
-            </ContentView>
-        </DataTemplate>
-    </Shell.MenuItemTemplate>
-
-    -->
+    </FlyoutItem>
+    
 </Shell>

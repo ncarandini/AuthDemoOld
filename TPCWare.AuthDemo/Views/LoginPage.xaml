@@ -6,27 +6,39 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
-             Title="{Binding Title}" >
+             Title="{Binding Title}"
+             Shell.FlyoutBehavior="Flyout">
 
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
 
-    <StackLayout>
+    <StackLayout VerticalOptions="Center">
+
         <StackLayout IsVisible="{Binding IsLogging}">
-            <Label Text="User is logging, wait for completition..." />
+            <Label Text="User is logging, wait for completition..."
+                   HorizontalOptions="Center"
+                   Padding="40"/>
+            <Button Text="Cancel" Margin="60, 10"
+                        Command="{Binding AbortCommand}" />
         </StackLayout>
 
         <StackLayout IsVisible="{Binding IsNotLogging}">
 
             <StackLayout IsVisible="{Binding IsUserLogged}">
-                <Label Text="{Binding LoggedUserMsg}" />
-                <Button Text="Logout" Command="{Binding LogoutCommand}" />
+                <Label Text="{Binding LoggedUserMsg}"
+                       HorizontalOptions="Center"
+                       Padding="20" />
+                <Button Text="Logout" Margin="60, 10"
+                        Command="{Binding LogoutCommand}" />
             </StackLayout>
 
             <StackLayout IsVisible="{Binding IsUserNotLogged}">
-                <Label Text="User not logged" />
-                <Button Text="Login" Command="{Binding LoginCommand}" />
+                <Label Text="User not logged"
+                       HorizontalOptions="Center"
+                       Padding="40"/>
+                <Button Text="Login" Margin="60, 10"
+                        Command="{Binding LoginCommand}" />
             </StackLayout>
 
         </StackLayout>

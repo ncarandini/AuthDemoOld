@@ -122,6 +122,14 @@
     <BundleResource Include="Resources\xamarin_logo%402x.png" />
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <ImageAsset Include="Assets.xcassets\tab_login.imageset\tab_login%402x.png" />
+    <ImageAsset Include="Assets.xcassets\tab_login.imageset\tab_login%403x.png" />
+    <ImageAsset Include="Assets.xcassets\tab_login.imageset\tab_login.png" />
+    <ImageAsset Include="Assets.xcassets\tab_login.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\tab_logout.imageset\tab_logout.png" />
+    <ImageAsset Include="Assets.xcassets\tab_logout.imageset\tab_logout%403x.png" />
+    <ImageAsset Include="Assets.xcassets\tab_logout.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\tab_logout.imageset\tab_logout%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -133,9 +141,12 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.772" />
+    <PackageReference Include="Xamarin.Forms" Version="4.6.0.800" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Microsoft.Identity.Client">
+      <Version>4.14.0</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
