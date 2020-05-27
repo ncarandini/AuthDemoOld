@@ -108,6 +108,7 @@ namespace TPCWare.AuthDemo.Services
             }
             finally
             {
+                //Why pass AccessToken null also if logged????? -> BP20200527
                 await SetAccessTokenAsync(userContext?.AccessToken);
                 UserContext = userContext;
                 OnAuthenticationStateChanged();
@@ -224,6 +225,10 @@ namespace TPCWare.AuthDemo.Services
             newContext.Country = user["country"]?.ToString();
 
             newContext.JobTitle = user["jobTitle"]?.ToString();
+
+            newContext.Idp = user["idp"]?.ToString();
+
+            newContext.IdpAccessToken = user["idp_access_token"]?.ToString();
 
             var emails = user["emails"] as JArray;
             if (emails != null)
