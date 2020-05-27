@@ -11,12 +11,12 @@ namespace TPCWare.AuthDemo.Services
     public class MsAuthService
     {
         // Azure AD B2C
-        public static string Tenant = "Hubigloob2c.onmicrosoft.com";
-        public static string AzureADB2CHostname = "hubigloob2c.b2clogin.com";
-        public static string ClientID = "78a5f87c-3e18-4e9e-b010-138897bdd475";
-        public static string PolicySignUpSignIn = "B2C_1_SignUpSignIn";
-        public static string PolicyEditProfile = "B2C_1_ProfileEditing";
-        public static string PolicyResetPassword = "B2C_1_PasswordReset";
+        public static string Tenant = "bagno38.onmicrosoft.com";
+        public static string AzureADB2CHostname = "bagno38.b2clogin.com";
+        public static string ClientID = "93141eeb-51fa-43ad-8a10-06c50879ce89";
+        public static string PolicySignUpSignIn = "B2C_1_RegisterAndLogin";
+        public static string PolicyEditProfile = "";
+        public static string PolicyResetPassword = "";
 
         // Public Client Application 
         public static string AuthorityBase = $"https://{AzureADB2CHostname}/tfp/{Tenant}/";

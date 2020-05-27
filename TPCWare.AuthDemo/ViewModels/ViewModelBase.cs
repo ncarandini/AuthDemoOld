@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+
 using MvvmHelpers;
 using MvvmHelpers.Commands;
+
 using TPCWare.AuthDemo.Models;
 using TPCWare.AuthDemo.Services;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -66,12 +69,14 @@ namespace TPCWare.AuthDemo.ViewModels
                     // TODO: Analytics.TrackEvent("UserLogin");
                     await AuthenticationService.SignInAsync();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
+                    IsLogging = false;
                 }
                 finally
                 {
-                    IsLogging = false;
+
                 }
             }
         }
