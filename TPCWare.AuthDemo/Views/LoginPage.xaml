@@ -4,6 +4,8 @@
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
 	Title="{Binding Title}"
@@ -51,14 +53,31 @@
 					Text="Login" />
             </StackLayout>
 
-            <StackLayout IsVisible="{Binding IsUserLogged}">
-                <Label
-					Padding="40"
-					HorizontalOptions="Center"
-					Text="Facebook Info" />
 
-            </StackLayout>
 
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsLogging}">
+            <Label
+				Padding="40"
+				HorizontalOptions="Center"
+				Text="{Binding FBAccount.Name}" />
+            <ff:CachedImage
+				x:Name="imageAirQualityIcon"
+				BackgroundColor="Transparent"
+				CacheDuration="0"
+				CacheType="Memory"
+				DownsampleToViewSize="true"
+				HeightRequest="60"
+				HorizontalOptions="Center"
+				IsVisible="True"
+				Source="{Binding FBAccount.Picture.data.url}"
+				TranslationY="10"
+				VerticalOptions="Center"
+				WidthRequest="60">
+                <ff:CachedImage.Transformations>
+                    <fft:CircleTransformation BorderHexColor="#cccc" BorderSize="4" />
+                </ff:CachedImage.Transformations>
+            </ff:CachedImage>
         </StackLayout>
     </StackLayout>
 
