@@ -29,12 +29,12 @@
 			<string>com.tpcware.authdemo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>msal90c0fe63-bcf2-44d5-8fb7-b8bbc0b29dc6</string>
+				<string>msal93141eeb-51fa-43ad-8a10-06c50879ce89</string>
 			</array>
 		</dict>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>13.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>TPCWare.AuthDemo</string>
 	<key>CFBundleIdentifier</key>

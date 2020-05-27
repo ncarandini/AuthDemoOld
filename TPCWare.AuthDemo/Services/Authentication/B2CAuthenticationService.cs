@@ -1,11 +1,15 @@
 ﻿using Microsoft.Identity.Client;
+
 using Newtonsoft.Json.Linq;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using TPCWare.AuthDemo.Models;
+
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -14,7 +18,7 @@ namespace TPCWare.AuthDemo.Services
     /// <summary>
     ///  For simplicity, we'll have this as a singleton. 
     /// </summary>
-    public class B2CAuthenticationService: IAuthenticationService
+    public class B2CAuthenticationService : IAuthenticationService
     {
         public event EventHandler AuthenticationStateChanged;
 
@@ -23,12 +27,12 @@ namespace TPCWare.AuthDemo.Services
         // TODO: this should be refactored using settings and user secrets
 
         // Azure AD B2C Coordinates
-        public static string Tenant = "fabrikamb2c.onmicrosoft.com";
-        public static string AzureADB2CHostname = "fabrikamb2c.b2clogin.com";
-        public static string ClientID = "e5737214-6372-472c-a85a-68e8fbe6cf3c";
-        public static string PolicySignUpSignIn = "b2c_1_susi";
-        public static string PolicyEditProfile = "b2c_1_edit_profile";
-        public static string PolicyResetPassword = "b2c_1_reset";
+        public static string Tenant = "bagno38.onmicrosoft.com";
+        public static string AzureADB2CHostname = "bagno38.b2clogin.com";
+        public static string ClientID = "93141eeb-51fa-43ad-8a10-06c50879ce89";
+        public static string PolicySignUpSignIn = "B2C_1_RegisterAndLogin";
+        public static string PolicyEditProfile = "";
+        public static string PolicyResetPassword = "";
 
         public static string[] Scopes = { "https://fabrikamb2c.onmicrosoft.com/helloapi/demo.read" };
 
@@ -104,6 +108,7 @@ namespace TPCWare.AuthDemo.Services
             }
             finally
             {
+                //Why pass AccessToken null also if logged????? -> BP20200527
                 await SetAccessTokenAsync(userContext?.AccessToken);
                 UserContext = userContext;
                 OnAuthenticationStateChanged();
@@ -115,7 +120,7 @@ namespace TPCWare.AuthDemo.Services
         {
             IEnumerable<IAccount> accounts = await _pca.GetAccountsAsync();
             AuthenticationResult authResult = await _pca.AcquireTokenSilent(Scopes, GetAccountByPolicy(accounts, PolicySignUpSignIn))
-               .WithB2CAuthority(AuthoritySignInSignUp)   
+               .WithB2CAuthority(AuthoritySignInSignUp)
                .ExecuteAsync();
 
             var newContext = UpdateUserInfo(authResult);
@@ -220,6 +225,10 @@ namespace TPCWare.AuthDemo.Services
             newContext.Country = user["country"]?.ToString();
 
             newContext.JobTitle = user["jobTitle"]?.ToString();
+
+            newContext.Idp = user["idp"]?.ToString();
+
+            newContext.IdpAccessToken = user["idp_access_token"]?.ToString();
 
             var emails = user["emails"] as JArray;
             if (emails != null)

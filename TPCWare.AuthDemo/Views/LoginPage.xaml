@@ -1,13 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage x:Class="TPCWare.AuthDemo.Views.LoginPage"
-             xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" 
-             Title="{Binding Title}"
-             Shell.FlyoutBehavior="Flyout">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+	x:Class="TPCWare.AuthDemo.Views.LoginPage"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
+	Title="{Binding Title}"
+	Shell.FlyoutBehavior="Flyout"
+	mc:Ignorable="d">
 
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
@@ -16,32 +19,66 @@
     <StackLayout VerticalOptions="Center">
 
         <StackLayout IsVisible="{Binding IsLogging}">
-            <Label Text="User is logging, wait for completition..."
-                   HorizontalOptions="Center"
-                   Padding="40"/>
-            <Button Text="Cancel" Margin="60, 10"
-                        Command="{Binding AbortCommand}" />
+            <Label
+				Padding="40"
+				HorizontalOptions="Center"
+				Text="User is logging, wait for completition..." />
+            <Button
+				Margin="60,10"
+				Command="{Binding AbortCommand}"
+				Text="Cancel" />
         </StackLayout>
 
         <StackLayout IsVisible="{Binding IsNotLogging}">
 
             <StackLayout IsVisible="{Binding IsUserLogged}">
-                <Label Text="{Binding LoggedUserMsg}"
-                       HorizontalOptions="Center"
-                       Padding="20" />
-                <Button Text="Logout" Margin="60, 10"
-                        Command="{Binding LogoutCommand}" />
+                <Label
+					Padding="20"
+					HorizontalOptions="Center"
+					Text="{Binding LoggedUserMsg}" />
+                <Button
+					Margin="60,10"
+					Command="{Binding LogoutCommand}"
+					Text="Logout" />
             </StackLayout>
 
             <StackLayout IsVisible="{Binding IsUserNotLogged}">
-                <Label Text="User not logged"
-                       HorizontalOptions="Center"
-                       Padding="40"/>
-                <Button Text="Login" Margin="60, 10"
-                        Command="{Binding LoginCommand}" />
+                <Label
+					Padding="40"
+					HorizontalOptions="Center"
+					Text="User not logged" />
+                <Button
+					Margin="60,10"
+					Command="{Binding LoginCommand}"
+					Text="Login" />
             </StackLayout>
 
+
+
+        </StackLayout>
+        <StackLayout IsVisible="{Binding IsLogging}">
+            <Label
+				Padding="40"
+				HorizontalOptions="Center"
+				Text="{Binding FBAccount.Name}" />
+            <ff:CachedImage
+				x:Name="imageAirQualityIcon"
+				BackgroundColor="Transparent"
+				CacheDuration="0"
+				CacheType="Memory"
+				DownsampleToViewSize="true"
+				HeightRequest="60"
+				HorizontalOptions="Center"
+				IsVisible="True"
+				Source="{Binding FBAccount.Picture.data.url}"
+				TranslationY="10"
+				VerticalOptions="Center"
+				WidthRequest="60">
+                <ff:CachedImage.Transformations>
+                    <fft:CircleTransformation BorderHexColor="#cccc" BorderSize="4" />
+                </ff:CachedImage.Transformations>
+            </ff:CachedImage>
         </StackLayout>
     </StackLayout>
-    
+
 </ContentPage>
