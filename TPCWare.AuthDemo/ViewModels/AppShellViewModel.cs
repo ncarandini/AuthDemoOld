@@ -4,12 +4,14 @@ using MvvmHelpers.Commands;
 using TPCWare.AuthDemo.Models;
 using TPCWare.AuthDemo.Services;
 using Xamarin.Forms;
+using System.ComponentModel;
+
 
 namespace TPCWare.AuthDemo.ViewModels
 {
-    public class AppShellViewModel : ViewModelBase
+    public class AppShellViewModel : ViewModelBase, INotifyPropertyChanged
     {
-        public AppShellViewModel(): base()
+        public AppShellViewModel() : base()
         {
             Title = "Auth demo";
 
@@ -20,7 +22,9 @@ namespace TPCWare.AuthDemo.ViewModels
 
         private void OnAuthenticationStateChanged(object sender, EventArgs e)
         {
-            LogInOutTitle = !AuthenticationService.UserContext?.IsLoggedOn ?? true ? "Login" : "Logout";
+            LogInOutTitle = !(AuthenticationService.UserContext?.IsLoggedOn) ?? true ? "Login" : "Logout";
+
+            MessagingCenter.Send<AppShellViewModel, string>(this, "changeTitle", LogInOutTitle);
 
             OnPropertyChanged(nameof(LogInOutTitle));
             OnPropertyChanged(nameof(LogInOutIconName));

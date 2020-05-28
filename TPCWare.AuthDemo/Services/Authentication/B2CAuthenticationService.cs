@@ -100,6 +100,7 @@ namespace TPCWare.AuthDemo.Services
             catch (MsalUiRequiredException)
             {
                 // acquire token interactive
+
                 userContext = await SignInInteractively();
             }
             catch (Exception)
@@ -108,7 +109,7 @@ namespace TPCWare.AuthDemo.Services
             }
             finally
             {
-                //Why pass AccessToken null also if logged????? -> BP20200527
+                //Why pass AccessToken null if I logged and before was not null????? -> BP20200527
                 await SetAccessTokenAsync(userContext?.AccessToken);
                 UserContext = userContext;
                 OnAuthenticationStateChanged();

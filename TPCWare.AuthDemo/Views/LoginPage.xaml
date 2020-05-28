@@ -56,7 +56,7 @@
 
 
         </StackLayout>
-        <StackLayout IsVisible="{Binding IsLogging}">
+        <StackLayout IsVisible="{Binding IsUserLogged}">
             <Label
 				Padding="40"
 				HorizontalOptions="Center"

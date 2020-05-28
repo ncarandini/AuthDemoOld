@@ -1,15 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Shell x:Class="TPCWare.AuthDemo.AppShell"
-       xmlns="http://xamarin.com/schemas/2014/forms"
-       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       xmlns:views="clr-namespace:TPCWare.AuthDemo.Views"
-       xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
-       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-       Title="{Binding Title}">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+	x:Class="TPCWare.AuthDemo.AppShell"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:views="clr-namespace:TPCWare.AuthDemo.Views"
+	xmlns:vm="clr-namespace:TPCWare.AuthDemo.ViewModels"
+	Title="{Binding Title}"
+	mc:Ignorable="d">
 
     <Shell.BindingContext>
-        <vm:AppShellViewModel/>
+        <!--<vm:AppShellViewModel/>-->
     </Shell.BindingContext>
 
     <Shell.Resources>
@@ -26,7 +28,7 @@
                 <Setter Property="Shell.TabBarUnselectedColor" Value="#95FFFFFF" />
                 <Setter Property="Shell.TabBarTitleColor" Value="White" />
             </Style>
-            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style BasedOn="{StaticResource BaseStyle}" TargetType="TabBar" />
         </ResourceDictionary>
     </Shell.Resources>
 
@@ -34,12 +36,15 @@
         <Tab Title="Item list" Icon="tab_feed.png">
             <ShellContent ContentTemplate="{DataTemplate views:ItemsPage}" />
         </Tab>
-        <Tab Title="{Binding LogInOutTitle}" Icon="{Binding LogInOutIconName}">
+        <Tab
+			x:Name="tabLogin"
+			Title=""
+			Icon="{Binding LogInOutIconName}">
             <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" />
         </Tab>
         <Tab Title="About" Icon="tab_about.png">
             <ShellContent ContentTemplate="{DataTemplate views:AboutPage}" />
         </Tab>
     </FlyoutItem>
-    
+
 </Shell>

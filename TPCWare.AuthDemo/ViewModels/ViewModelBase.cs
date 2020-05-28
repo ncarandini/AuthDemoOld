@@ -76,7 +76,7 @@ namespace TPCWare.AuthDemo.ViewModels
                 }
                 finally
                 {
-
+                    IsLogging = false;
                 }
             }
         }
